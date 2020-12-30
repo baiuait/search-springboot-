@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiuait.search.dao.UrlsMapper">
+    <!-- 根据用户编号来获取该用户的urls -->
+    <select id="getUrlsByUserId" resultType="urls">
+        select * from urls where userId = #{userId}
+    </select>
+    <!-- 添加url -->
+    <insert id="addUrl" parameterType="urls" useGeneratedKeys="true" keyProperty="id">
+        insert into urls(title, url, img, userId) values (#{title},#{url},#{img},#{userId})
+    </insert>
+    <!-- 删除url -->
+    <delete id="deleteUrl">
+        delete from urls where id=#{id}
+    </delete>
+</mapper>

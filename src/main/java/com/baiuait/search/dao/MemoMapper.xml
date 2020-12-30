@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.baiuait.search.dao.MemoMapper">
+    <!-- 查询便笺 -->
+    <select id="getMemoByUserId" resultType="memo">
+        select * from memo where userId = #{userId}
+    </select>
+    <!-- 添加便笺 -->
+    <insert id="addMemo" parameterType="memo" useGeneratedKeys="true" keyProperty="id">
+        insert into memo(userId, content) values (#{userId},#{content})
+    </insert>
+    <!-- 修改便笺内容 -->
+    <update id="modifyMemoContent" parameterType="memo">
+        update memo set content = #{content} where id = #{id}
+    </update>
+    <!-- 删除便笺 -->
+    <delete id="deleteMemo" parameterType="int">
+        delete from memo where id = #{id}
+    </delete>
+    <!-- 修改便笺置顶 -->
+    <update id="modifyMemoIsTopOther" parameterType="memo">
+        update memo set isTop = 0 where userId = #{userId};
+    </update>
+    <update id="modifyMemoIsTop" parameterType="memo">
+        update memo set isTop = 1 where id = #{id};
+    </update>
+</mapper>
